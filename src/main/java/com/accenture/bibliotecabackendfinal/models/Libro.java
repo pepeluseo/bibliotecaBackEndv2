@@ -21,7 +21,7 @@ public class Libro {
     @JoinColumn(name = "autor")
     private Autor autor;
     private String portada;
-    private String anyo;
+    private String fecha;
     private long isbn;
     @ManyToOne
     @JoinColumn(name = "editorial")
