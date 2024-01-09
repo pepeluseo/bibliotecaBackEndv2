@@ -2,7 +2,6 @@ package com.accenture.bibliotecabackendfinal.Service;
 
 import com.accenture.bibliotecabackendfinal.Repository.UsuarioRepository;
 import com.accenture.bibliotecabackendfinal.models.Usuario;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,12 +26,13 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     public Usuario usuarioModificado(Usuario usuario) {
         Optional<Usuario> usuarioEncontrado= this.usuarioRepository.findById(usuario.getId());
-        if(usuarioEncontrado.get() != null){
-            usuarioEncontrado.get().setNombre(usuario.getNombre());
-            usuarioEncontrado.get().setDireccion(usuario.getDireccion());
-            usuarioEncontrado.get().setTelefono(usuario.getTelefono());
-            usuarioEncontrado.get().setEmail(usuario.getEmail());
-            return this.nuevoUsuario(usuarioEncontrado.get());
+        if(usuarioEncontrado.isPresent()){
+            Usuario usuarioExistente = usuarioEncontrado.get();
+            usuarioExistente.setNombre(usuario.getNombre());
+            usuarioExistente.setDireccion(usuario.getDireccion());
+            usuarioExistente.setTelefono(usuario.getTelefono());
+            usuarioExistente.setEmail(usuario.getEmail());
+            return this.nuevoUsuario(usuarioExistente);
         }
         return null;
     }
