@@ -12,17 +12,17 @@ import lombok.*;
 
 public class Usuario {
     @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column(name = "nombre")
     private String nombre;
-    @Column
+    @Column(name = "direccion")
     private String direccion;
-    @Column
+    @Column(name = "telefono")
     private String telefono;
     @Column(unique = true)
     private String email;
-    @Column
+    @Column(name = "password")
     private String password;
 
 }
