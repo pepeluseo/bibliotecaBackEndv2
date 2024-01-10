@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
+    private final UsuarioService usuarioService;
     @Autowired
-    private UsuarioService usuarioService;
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
+
     @PostMapping("/nuevo")
     public Usuario nuevoUsuario(@RequestBody Usuario nuevoUsuario){
         return this.usuarioService.nuevoUsuario(nuevoUsuario);
